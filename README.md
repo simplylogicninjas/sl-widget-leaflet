@@ -43,6 +43,10 @@ Leaflet map is a collection of pluggable widgets that displays a map for a user.
 
 - Url: The tile provider to use as base map layer, this url can include parameters
 - Attribution: Credits in the right bottom screen (optional)
+- Minimum zoom: minimum base zoom of the map
+- Maximum zoom: maximum base zoom of the map
+- Zoom offset: the zoom number used in the URL will be offset with this value
+- Tile size: the tile size of the map by default this is 256, this can be different depending on tile provider.
 
 - Additional maps: A datasource with list that returns objects that have a string with a map source stored.  (optional)
 
