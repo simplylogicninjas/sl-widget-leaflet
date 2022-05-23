@@ -1,25 +1,25 @@
 # SL - Leaflet Map
 
 ## 1\. Description
-Leaflet map is a collection of pluggable widgets that displays a map for a user. The widget itself allows the developer to use different maps from different map providers such as streetview. The widget package contains various widget components that interact with the map and extend functionality of the leaflet map widget.
+Leaflet map is a collection of pluggable widgets that displays a map for a user. The widget itself allows the developer to use different maps from different tile providers such as streetview. The widget package contains various widget components that interact with the map and extend functionality of the leaflet map widget.
 
 ### 1.1 Contents
 <table>
     <tbody>
         <tr>
-            <td><b>Widget</b></td><td>Description</td>
+            <td><b>Widget component</b></td><td>Description</td>
         </tr>
         <tr>
             <td><a href="#14-Usage">Leaflet Map</a></td><td>The container widget where every other widget should be placed within which is mandatory</td>
         </tr>
         <tr>
-            <td><a href="#2-Leaflet-Geofence">Leaflet geofence</a></td><td>This widget allows the widget to use geofencing</td>
+            <td><a href="#2-Leaflet-Geofence">Leaflet Geofence</a></td><td>This widget allows the widget to use geofencing based on current device location</td>
         </tr>  
         <tr>
-            <td><a href="#3-Leaflet-Geo-JSON">Leaflet Geo JSON</a></td><td>This widget allows the widget to display geoJSON on the map.</td>
+            <td><a href="#3-leaflet-geofence-geojson">Leaflet GeoJSON</a></td><td>This widget allows the widget to display geoJSON on the map.</td>
         </tr>
         <tr>
-            <td><a href="#4-Leaflet-Markers">Leaflet Markers</a></td><td>This widget allows the widget the display markers on your map</td>
+            <td><a href="#4-leaflet-marker">Leaflet Markers</a></td><td>This widget allows the widget the display markers on your map</td>
         </tr>   
     </tbody>
 </table>
@@ -102,7 +102,7 @@ Allows the map widget to configure geofences and geofence events based on the cu
     - Action: What action to trigger when the current position of the device enters a geofence radius (note: this is triggered everytime you move in or inside a geofence)
     - Geofence ID: The unique ID that identifies the goefence (string)
     - Goefence distance: the attribute that stores the distance between current position and the geofence center position in meters (decimal)
-    
+
 - Geofence Out
     - Action: What action to trigger when the current position of the device leaves a geofence radius 
     - Geofence ID: The unique ID that identifies the goefence (string)
