@@ -20,12 +20,12 @@ Leaflet map is a collection of pluggable widgets that displays a map for a user.
         </tr>
         <tr>
             <td><a href="#4-Leaflet-Markers">Leaflet Markers</a></td><td>This widget allows the widget the display markers on your map</td>
-        </tr>
-      
-    </tbody></table>
+        </tr>   
+    </tbody>
+</table>
 
 ### 1.2 Browser example
-<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet-map/main/docs/images/map/map_browser_example.png" width="600">
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/map/map_browser_example.png" width="600">
 
 ### 1.3 Features
 - Display various map format
@@ -39,14 +39,14 @@ Leaflet map is a collection of pluggable widgets that displays a map for a user.
 - Place any other widgets you want in the Leaflet Map container widget
 
 ### 1.5 Configuration
-<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet-map/main/docs/images/map/modeler_example_map.png" width="600">
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/map/modeler_example_map.png" width="600">
 
 - Url: The tile provider to use as base map layer, this url can include parameters
 - Attribution: Credits in the right bottom screen (optional)
 
 - Additional maps: A datasource with list that returns objects that have a string with a map source stored.  (optional)
 
-<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet-map/main/docs/images/map/modeler_example_position.png" width="600">
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/map/modeler_example_position.png" width="600">
 
 - Position mode: The position mode to use for map centering
     - Device position uses the current device position
@@ -63,7 +63,7 @@ Leaflet map is a collection of pluggable widgets that displays a map for a user.
     - Longitude: fallback longitude when longitude could not be read.
     - Zoom: fallback zoom when zoom could not be read.
 
-<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet-map/main/docs/images/map/modeler_example_events.png" width="600">
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/map/modeler_example_events.png" width="600">
 
 - On map click: The event to trigger when a user clicks on a map
 - Lattitude: The lattitude string to store the clicked latttitude in by the user 
@@ -77,7 +77,7 @@ Allows the map widget to configure geofences and geofence events based on the cu
 - Place inside the map widget container
 
 ## 2.3 Configuration
-<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet-map/main/docs/images/geofence/geofence_example_general.png" width="600">
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/geofence/geofence_example_general.png" width="600">
 
 - Geofence
     - Enable position update: Configuration of geofence events, if true the events will be triggered on each position update, if false no events will be triggered.
@@ -96,12 +96,13 @@ Allows the map widget to configure geofences and geofence events based on the cu
     - Stroke weight: The weight of the stroke of a geofence (in pixels)
     - Fill opacity: the opacity of the fill color (0-1.0)
 
-<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet-map/main/docs/images/geofence/geofence_example_events.png" width="600">
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/geofence/geofence_example_events.png" width="600">
 
 - Geofence In
     - Action: What action to trigger when the current position of the device enters a geofence radius (note: this is triggered everytime you move in or inside a geofence)
     - Geofence ID: The unique ID that identifies the goefence (string)
     - Goefence distance: the attribute that stores the distance between current position and the geofence center position in meters (decimal)
+    
 - Geofence Out
     - Action: What action to trigger when the current position of the device leaves a geofence radius 
     - Geofence ID: The unique ID that identifies the goefence (string)
@@ -119,12 +120,12 @@ Allows the map widget to display GeoJSON as overlays on the map
 - Place inside the map widget container
 
 ### 3.3 Configuration
-<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet-map/main/docs/images/geoJSON/geoJSON_example_general.png" width="600">
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/geoJSON/geoJSON_example_general.png" width="600">
 
 - GeoJSON Datasource: Objects in a list that store an attribute that can hold geoJSON 
 - GoeJSON data: A string that holds geoJSON data as describer here: https://geojson.org/
 
-<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet-map/main/docs/images/geoJSON/geoJSON_example_events.png" width="600">
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/geoJSON/geoJSON_example_events.png" width="600">
 
 - On feature click: the event that is triggered when clicking on a feature on the map.
 - Feature ID: the unique ID that is returned by the click event, this ID is stored in the geoJSON structure and should correspond with an ID on a mendix object (string)
@@ -138,7 +139,7 @@ Allows the map widget to display markers / pins on your leaflet maps and customi
 - Place inside the map widget container
 
 ### 4.3 Configuration
-<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet-map/main/docs/images/markers/markers_example_general.png" width="600">
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/markers/markers_example_general.png" width="600">
 
 - Datasource:
  - Markers datasource: Specify the list with mendix objects that
@@ -147,7 +148,7 @@ Allows the map widget to display markers / pins on your leaflet maps and customi
  - Longitutde: The longitude oft he marker
  - Moveable: An expression that stores the movability of the marker
 
-<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet-map/main/docs/images/markers/markers_example_events.png" width="600">
+<img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/markers/markers_example_events.png" width="600">
 
 - On marker click:
     - On marker click: the action to perform when a marker is clicked
