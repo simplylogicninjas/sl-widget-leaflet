@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="sl.slleafletmarkers.SLLeafletMarkers" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>SL - Leaflet Markers</name>
+    <description>Leaflet markers</description>
+    <icon/>
+    <properties>
+        <propertyGroup caption="General">
+            <propertyGroup caption="Datasource">
+                <property key="data" type="datasource" isList="true" required="true">
+                    <caption>Markers datasource</caption>
+                    <description>Provide datasource to show markers on the leaflet map</description>
+                </property>
+                <property key="id" type="attribute" dataSource="data" required="true">
+                    <caption>ID</caption>
+                    <description>Identifier attribute</description>
+                    <attributeTypes>
+                        <attributeType name="AutoNumber"/>
+                        <attributeType name="HashString"/>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+                <property key="latitude" type="attribute" dataSource="data" required="true">
+                    <caption>Latitude</caption>
+                    <description>Latitude </description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="longitude" type="attribute" dataSource="data" required="true">
+                    <caption>Longitude</caption>
+                    <description>Longitude </description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="draggable" type="expression" defaultValue="false" dataSource="data">
+                    <caption>Movable</caption>
+                    <description>Allow the marker to be moved on the map</description>
+                    <returnType type="Boolean" />
+                </property>
+                <property key="content" type="widgets" required="false" dataSource="data">
+                    <caption>Content</caption>
+                    <description>Dynamic content of the marker</description>
+                </property>
+                <property key="popupContent" type="widgets" required="false" dataSource="data">
+                    <caption>Popup content</caption>
+                    <description>Dynamic content of the marker popup</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Events">
+            <propertyGroup caption="On marker click">
+                <property key="onMarkerClickAction" type="action" required="false">
+                    <caption>On marker click</caption>
+                    <description>Action to be performed when marker is clicked</description>
+                </property>
+                <property key="onMarkerID" type="attribute" required="false">
+                    <caption>Marker ID</caption>
+                    <description>Attribute that stores the clicked marker identifier</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="On marker move">
+                <property key="onMarkerDragAction" type="action" required="false">
+                    <caption>On marker move</caption>
+                    <description>Action to be performed when marker is moved</description>
+                </property>
+                <property key="onMarkerMoveID" type="attribute" required="false">
+                    <caption>Marker ID</caption>
+                    <description>Attribute that stores the moved marker identifier</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+                <property key="onMarkerMoveLatitude" type="attribute" required="false">
+                    <caption>Marker Latitude</caption>
+                    <description>Attribute that stores the moved marker latitude</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+                <property key="onMarkerMoveLongitude" type="attribute" required="false">
+                    <caption>Marker Longitude</caption>
+                    <description>Attribute that stores the moved marker longitude</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+    </properties>
+</widget>

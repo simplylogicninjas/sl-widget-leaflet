@@ -1,0 +1,17 @@
+SL - LeafletMap
+
+Widget Properties:
+
+General
+	Map source
+		Url (Text)
+		Minimum zoom (Integer) (Default: 0)
+		Maximum zoom (Intgeter) (Default: 18)
+		Attribution
+	
+	
+
+Markers
+GeoJSON
+GeoPosition
+GeoFencing

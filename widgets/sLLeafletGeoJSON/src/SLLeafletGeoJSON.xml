@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="sl.slleafletgeojson.SLLeafletGeoJSON" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>SL - Leaflet Geo JSON</name>
+    <description>Leaflet GeoJSON extension widget</description>
+    <icon/>
+    <properties>
+        <propertyGroup caption="General">
+            <property key="data" type="datasource" isList="true" required="true">
+                <caption>GeoJSON Datasource</caption>
+                <description>Provide datasource that has a attribute with GeoJSON</description>
+            </property>
+            <property key="geoJSON" type="attribute" dataSource="data" required="true">
+                <caption>GeoJSON data</caption>
+                <description>Attribute to provide the GeoJSON data</description>
+                <attributeTypes>
+                    <attributeType name="String" />
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Events">
+            <propertyGroup caption="On Feature click">
+                <property key="onFeatureClickAction" type="action" required="false">
+                    <caption>On feature click</caption>
+                    <description>Action to be performed when GeoJSON feature is clicked</description>
+                </property>
+                <property key="onFeatureId" type="attribute" required="false">
+                    <caption>Feature ID</caption>
+                    <description>Attribute that stores the feature identifier</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+    </properties>
+</widget>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="sl.slleafletmap.SLLeafletMap" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>SL - Leaflet Map</name>
+    <description>Leaflet map</description>
+    <icon/>
+    <properties>
+        <propertyGroup caption="Content">
+            <property key="content" type="widgets" required="false">
+                <caption>Place LeafletMap extension widgets here</caption>
+                <description>Place LeafletMap extension widgets here</description>
+            </property>
+        </propertyGroup>
+        <propertyGroup caption="Map">
+            <propertyGroup caption="Base map">
+                <property type="expression" key="baseMapUrl" required="true">
+                    <caption>Url</caption>
+                    <description>Url of the base map</description>
+                    <returnType type="String" />
+                </property>
+                <property type="expression" key="baseMapAttribution" required="false">
+                    <caption>Attribution</caption>
+                    <description>Attribution of the base map</description>
+                    <returnType type="String" />
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Additional maps">
+                <property key="additionalMaps" type="datasource" isList="true" required="false">
+                    <caption>Datasource</caption>
+                    <description>Provide additional dynamic maps. For example to show additional map layers, like bike roads.</description>
+                </property>
+                <property type="expression" key="additionalMapUrl" dataSource="additionalMaps" required="false">
+                    <caption>Url</caption>
+                    <description>Url of the additional map</description>
+                    <returnType type="String" />
+                </property>
+                <property type="expression" key="additionalMapAttribution" dataSource="additionalMaps" required="false">
+                    <caption>Attribution</caption>
+                    <description>Attribution of the additional map</description>
+                    <returnType type="String" />
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Position">
+            <propertyGroup caption="Position">
+                <property type="enumeration" key="positionMode" defaultValue="geoPosition">
+                    <caption>Position mode</caption>
+                    <description>Define a position mode that controls the center position of the map</description>
+                    <enumerationValues>
+                        <enumerationValue key="geoPosition">Device position</enumerationValue>
+                        <enumerationValue key="manual">Manual</enumerationValue>
+                        <enumerationValue key="marker">Marker</enumerationValue>
+                        <enumerationValue key="geojson">GeoJSON</enumerationValue>
+                    </enumerationValues>
+                </property>
+                <property type="expression" key="positionZoom" required="false">
+                    <caption>Zoom</caption>
+                    <description>Initial zoom of the map</description>
+                    <returnType type="Integer" />
+                </property>
+                <property type="attribute" key="positionLatitude" required="false">
+                    <caption>Latitude</caption>
+                    <description>Latitude position of the map</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+                <property type="attribute" key="positionLongitude" required="false">
+                    <caption>Longitude</caption>
+                    <description>Longitude position of the map</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Default position">
+                <property key="defaultLatitude" type="string" required="true" defaultValue="0">
+                    <caption>Latitude</caption>
+                    <description>Default latitude position to use as fallback</description>
+                </property>
+                <property key="defaultLongitude" type="string" required="true" defaultValue="0">
+                    <caption>Longitude</caption>
+                    <description>Default latitude position to use as fallback</description>
+                </property>
+                <property key="defaultZoom" type="integer" required="true" defaultValue="15">
+                    <caption>Zoom</caption>
+                    <description>Default zoom to use as fallback</description>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Events">
+            <propertyGroup caption="On map click">
+                <property key="onMapClickAction" type="action" required="false">
+                    <caption>On map click</caption>
+                    <description>Action to be performed when map is clicked</description>
+                </property>
+                <property key="onMapClickContent" type="widgets" required="false">
+                    <caption>Popup Content</caption>
+                    <description>Content of a popup</description>
+                </property>
+                <property key="onMapClickLatitude" type="attribute" required="false">
+                    <caption>Latitude</caption>
+                    <description>Latitude attribute</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+                <property key="onMapClickLongitude" type="attribute" required="false">
+                    <caption>Longitude</caption>
+                    <description>Longitude attribute</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+    </properties>
+</widget>

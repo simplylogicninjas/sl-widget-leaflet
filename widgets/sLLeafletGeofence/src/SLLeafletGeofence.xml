@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget id="sl.slleafletgeofence.SLLeafletGeofence" pluginWidget="true" needsEntityContext="true" offlineCapable="true"
+        supportedPlatform="Web"
+        xmlns="http://www.mendix.com/widget/1.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd">
+    <name>SL - Leaflet Geofence</name>
+    <description>Geofence with live Geolocation tracking</description>
+    <icon/>
+    <properties>
+        <propertyGroup caption="General">
+            <propertyGroup caption="Geofence">
+                <property key="geofenceEnabled" type="expression" defaultValue="true">
+                    <caption>Enable position update</caption>
+                    <description>If true then Geofence events will be triggerd on each position update</description>
+                    <returnType type="Boolean" />
+                </property>
+                <property key="geofenceSetViewEnabled" type="expression" defaultValue="true">
+                    <caption>Update map location</caption>
+                    <description>If true then the map will update the location automatically if position update is enabled.</description>
+                    <returnType type="Boolean" />
+                </property>
+                <property key="defaultRadius" type="expression" defaultValue="30">
+                    <caption>Default radius</caption>
+                    <description>Default fallback radius if Geofence datasource object has no radius specified</description>
+                    <returnType type="Integer" />
+                </property>
+                <property key="maximumAge" type="expression" defaultValue="0">
+                    <caption>Maximum age</caption>
+                    <description>Maximum age of detected location in milliseconds.</description>
+                    <returnType type="Integer" />
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Datasource">
+                <property key="data" type="datasource" isList="true" required="true">
+                    <caption>Geofence datasource</caption>
+                    <description>Provide datasource that has latitude,longitude and optional radius attributes</description>
+                </property>
+                <property key="id" type="attribute" dataSource="data" required="true">
+                    <caption>ID</caption>
+                    <description>Identifier attribute</description>
+                    <attributeTypes>
+                        <attributeType name="AutoNumber"/>
+                        <attributeType name="HashString"/>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+                <property key="latitude" type="attribute" dataSource="data" required="true">
+                    <caption>Latitude</caption>
+                    <description>Latitude </description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="longitude" type="attribute" dataSource="data" required="true">
+                    <caption>Longitude</caption>
+                    <description>Longitude </description>
+                    <attributeTypes>
+                        <attributeType name="String" />
+                    </attributeTypes>
+                </property>
+                <property key="radius" type="attribute" dataSource="data" required="false">
+                    <caption>Radius</caption>
+                    <description>Radius </description>
+                    <attributeTypes>
+                        <attributeType name="Integer" />
+                    </attributeTypes>
+                </property>
+                <property key="defaultColor" type="expression" defaultValue="'#264ae5'" dataSource="data">
+                    <caption>Default color</caption>
+                    <description>The default geofence color</description>
+                    <returnType type="String" />
+                </property>
+                <property key="activeColor" type="expression" defaultValue="'#3cb33d'" dataSource="data">
+                    <caption>Active color</caption>
+                    <description>The active geofence color</description>
+                    <returnType type="String" />
+                </property>
+                <property key="strokeOpacity" type="expression" defaultValue="1.0" dataSource="data">
+                    <caption>Stroke opacity</caption>
+                    <description>The opacity of the stroke. Provide a value between 0 and 1.0</description>
+                    <returnType type="Decimal" />
+                </property>
+                <property key="strokeWeight" type="expression" defaultValue="3" dataSource="data">
+                    <caption>Stroke weight</caption>
+                    <description>The weight of the stroke.</description>
+                    <returnType type="Integer" />
+                </property>
+                <property key="fillOpacity" type="expression" defaultValue="1.0" dataSource="data">
+                    <caption>Fill opacity</caption>
+                    <description>The opacity of the fill. Provide a value between 0 and 1.0</description>
+                    <returnType type="Decimal" />
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+        <propertyGroup caption="Events">
+            <propertyGroup caption="Geofence In">
+                <property key="onGeofenceAction" type="action" required="false">
+                    <caption>Action</caption>
+                    <description>Action to be performed when current position is inside geofence</description>
+                </property>
+                <property key="onGeofenceId" type="attribute" required="false">
+                    <caption>Geofence ID</caption>
+                    <description>Attribute that stores the geofenced identifier</description>
+                    <attributeTypes>
+                        <attributeType name="AutoNumber"/>
+                        <attributeType name="HashString"/>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+                <property key="onGeofenceDistance" type="attribute" required="false">
+                    <caption>Geofence distance</caption>
+                    <description>Attribute that stores the geofenced distance</description>
+                    <attributeTypes>
+                        <attributeType name="Decimal"/>
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Geofence Out">
+                <property key="onGeofenceOutAction" type="action" required="false">
+                    <caption>Action</caption>
+                    <description>Action to be performed when current position is out of geofence</description>
+                </property>
+                <property key="onGeofenceOutId" type="attribute" required="false">
+                    <caption>Geofence ID</caption>
+                    <description>Attribute that stores the geofenced identifier</description>
+                    <attributeTypes>
+                        <attributeType name="AutoNumber"/>
+                        <attributeType name="HashString"/>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+            <propertyGroup caption="Geofence current position">
+                <property key="onGeofenceCurrentPositionAction" type="action" required="false">
+                    <caption>Action</caption>
+                    <description>Action to be performed when current position changes</description>
+                </property>
+                <property key="onGeofenceCurrentPositionLatitude" type="attribute" required="false">
+                    <caption>Latitude</caption>
+                    <description>Attribute that stores the current latitude position</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+                <property key="onGeofenceCurrentPositionLongitude" type="attribute" required="false">
+                    <caption>Longitude</caption>
+                    <description>Attribute that stores the current longitude position</description>
+                    <attributeTypes>
+                        <attributeType name="String"/>
+                    </attributeTypes>
+                </property>
+            </propertyGroup>
+        </propertyGroup>
+    </properties>
+</widget>
