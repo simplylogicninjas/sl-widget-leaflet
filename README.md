@@ -142,11 +142,11 @@ Allows the map widget to display markers / pins on your leaflet maps and customi
 <img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/markers/markers_example_general.png" width="600">
 
 - Datasource:
- - Markers datasource: Specify the list with mendix objects that
- - ID: the ID that stores the unique identifier of the markers
- - Lattitude: The latttidue of the marker
- - Longitutde: The longitude oft he marker
- - Moveable: An expression that stores the movability of the marker
+    - Markers datasource: Specify the list with mendix objects that
+    - ID: the ID that stores the unique identifier of the markers
+    - Lattitude: The latttidue of the marker
+    - Longitutde: The longitude oft he marker
+    - Moveable: An expression that stores the movability of the marker
 
 <img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/markers/markers_example_events.png" width="600">
 
