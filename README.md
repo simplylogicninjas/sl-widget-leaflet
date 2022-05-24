@@ -127,7 +127,7 @@ Allows the map widget to display GeoJSON as overlays on the map
 <img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/geoJSON/geoJSON_example_general.png" width="600">
 
 - GeoJSON Datasource: Objects in a list that store an attribute that can hold geoJSON 
-- GoeJSON data: A string that holds geoJSON data as describer here: https://geojson.org/
+- GeoJSON data: A string that holds geoJSON data as described here: https://geojson.org/
 
 <img src="https://raw.githubusercontent.com/simplylogicninjas/sl-widget-leaflet/main/docs/images/geoJSON/geoJSON_example_events.png" width="600">
 
