@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://www.mendix.com/package/1.0/">
+  <clientModule name="SLLeafletMap" version="1.0.0" xmlns="http://www.mendix.com/clientModule/1.0/">
+    <widgetFiles>
+      <widgetFile path="slleafletgeofence/SLLeafletGeofence.xml"/>
+      <widgetFile path="slleafletgeojson/SLLeafletGeoJSON.xml"/>
+      <widgetFile path="slleafletmap/SLLeafletMap.xml"/>
+      <widgetFile path="slleafletmarkers/SLLeafletMarkers.xml"/>
+    </widgetFiles>
+    <files>
+      <file path="sl/slleafletgeofence/SLLeafletGeofence"/>
+      <file path="sl/slleafletgeojson/SLLeafletGeoJSON"/>
+      <file path="sl/slleafletmap/SLLeafletMap"/>
+      <file path="sl/slleafletmarkers/SLLeafletMarkers"/>
+    </files>
+  </clientModule>
+</package>

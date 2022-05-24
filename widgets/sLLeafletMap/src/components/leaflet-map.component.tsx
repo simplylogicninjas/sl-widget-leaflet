@@ -1,10 +1,10 @@
-import { LatLngExpression } from "leaflet";
-import React, { createElement, useContext, useEffect, useRef } from "react"
+import { LatLngExpression, Map } from "leaflet";
+import React, { createElement, useContext, useEffect, useRef, useState } from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { IGlobalContext } from "../../../../shared/types/context.interface";
 import LeafletGeofence from "./leaflet-geofence.component";
 import LeafletGeoJSON from "./leaflet-geojson.component";
-import { LeafletMapProps } from "./leaflet-map.interface";
+import { LeafletMapProps, LeafletTileLayer } from "./leaflet-map.interface";
 import LeafletMarker from "./leaflet-marker.component";
 import LeafletMapEvents from "./map-events";
 import MapLocation from "./map-location.component";
@@ -25,24 +25,31 @@ const LeafletMap = ({
     lastVisibleTimestamp,
     id
 }: LeafletMapProps) => {
-    const {state} = useContext<IGlobalContext>(mx.slmap.context);
-    const baseTileLayerRef = useRef<any>(null);
+    const { state } = useContext<IGlobalContext>(mx.slmap.context);
+    const [layers, setLayers] = useState<LeafletTileLayer[]>([]);
+    const mapRef = useRef<Map>();
+
+    const onWhenCreated = (map: Map) => {
+        mapRef.current = map;
+        whenCreated(map);
+
+        map.setMinZoom(baseTileLayer.minZoom ?? 0);
+        map.setMaxZoom(baseTileLayer.maxZoom ?? 18);
+    };
 
     useEffect(() => {
-        if (baseTileLayerRef.current) {
-            baseTileLayerRef.current.setUrl(baseTileLayer.url)
+        if (mapRef.current) {
+            mapRef.current.setMinZoom(baseTileLayer.minZoom ?? 0);
+            mapRef.current.setMaxZoom(baseTileLayer.maxZoom ?? 18);
         }
-    }, [baseTileLayer.url])
+
+        setLayers([{ ...baseTileLayer }, ...additionalTileLayers]);
+    }, [baseTileLayer.url]);
 
     return (
         <React.Fragment>
-            {baseTileLayer.url && 
-                <MapContainer
-                    style={style}
-                    minZoom={3}
-                    whenReady={() => onReady()}
-                    whenCreated={map => whenCreated(map)}
-                >
+            {baseTileLayer.url && (
+                <MapContainer style={style} whenReady={() => onReady()} whenCreated={map => onWhenCreated(map)}>
                     <LeafletMapEvents
                         onClick={latlng => onClick(latlng)}
                         onShowPopup={latlng => onShowPopup(latlng)}
@@ -50,38 +57,60 @@ const LeafletMap = ({
                         popupContent={popupContent}
                     />
 
-                    <MapLocation lastUpdateTimestamp={lastVisibleTimestamp} position={position} markers={[...state.markers]} geoJSONData={[...state.geoJSON]} />
-
-                    <TileLayer
-                        attribution={baseTileLayer.attribution}
-                        url={baseTileLayer.url}
-                        ref={baseTileLayerRef}
+                    <MapLocation
+                        lastUpdateTimestamp={lastVisibleTimestamp}
+                        position={position}
+                        markers={[...state.markers]}
+                        geoJSONData={[...state.geoJSON]}
                     />
 
-                    {
-                        additionalTileLayers.map(tileLayer => {
-                            return (
-                                <TileLayer attribution={tileLayer.attribution} url={tileLayer.url} />
-                            )
-                        })
-                    }
-                    {
-                        state.markers.map((marker, index) => {
-                            return <LeafletMarker widgetId={id} key={index} id={!!marker.id ? marker.id : `marker-div-${new Date().getMilliseconds()}`} clickAction={state.markerAction} dragAction={state.markerDragAction} position={marker.position as LatLngExpression} draggable={marker.draggable} content={marker.content} popupContent={marker.popupContent} />
-                        })
-                    }
-                    {
-                        state.geoJSON.map((geoJSONData, index) => {
-                            return <LeafletGeoJSON key={index} data={geoJSONData} geoJSONAction={state.geoJSONAction} />
-                        })
-                    }
+                    {layers.map(tileLayer => {
+                        return (
+                            <TileLayer
+                                key={tileLayer.url}
+                                attribution={tileLayer.attribution}
+                                url={tileLayer.url}
+                                minZoom={tileLayer.minZoom}
+                                maxZoom={tileLayer.maxZoom}
+                                zoomOffset={tileLayer.zoomOffset}
+                                tileSize={tileLayer.tileSize}
+                            />
+                        );
+                    })}
+                    {state.markers.map(marker => {
+                        const markerId = marker.id ? marker.id : `marker-div-${new Date().getMilliseconds()}`;
 
-                { state.geofence.length && <LeafletGeofence data={[...state.geofence]} geofenceAction={state.geofenceAction} geofenceOutAction={state.geofenceOutAction} geofencePositionAction={state.geofencePositionAction} geofenceOptions={{...state.geofenceOptions}} /> }
+                        return (
+                            <LeafletMarker
+                                widgetId={id}
+                                key={markerId}
+                                id={markerId}
+                                clickAction={state.markerAction}
+                                dragAction={state.markerDragAction}
+                                position={marker.position as LatLngExpression}
+                                draggable={marker.draggable}
+                                content={marker.content}
+                                popupContent={marker.popupContent}
+                            />
+                        );
+                    })}
+                    {state.geoJSON.map((geoJSONData, index) => {
+                        return <LeafletGeoJSON key={index} data={geoJSONData} geoJSONAction={state.geoJSONAction} />;
+                    })}
+
+                    {state.geofence.length && (
+                        <LeafletGeofence
+                            data={[...state.geofence]}
+                            geofenceAction={state.geofenceAction}
+                            geofenceOutAction={state.geofenceOutAction}
+                            geofencePositionAction={state.geofencePositionAction}
+                            geofenceOptions={{ ...state.geofenceOptions }}
+                        />
+                    )}
                 </MapContainer>
-            }
-            
+            )}
         </React.Fragment>
-    )
-}
+    );
+};
 
 export default React.memo(LeafletMap);
