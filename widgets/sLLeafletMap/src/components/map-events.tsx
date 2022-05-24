@@ -1,5 +1,5 @@
 import { LatLng, LatLngExpression, LeafletMouseEvent } from "leaflet";
-import React, {createElement, useState} from "react";
+import React, { createElement, useState } from "react";
 import { Popup, useMapEvents } from "react-leaflet";
 
 interface Props {
@@ -9,12 +9,7 @@ interface Props {
     popupContent: any;
 }
 
-const LeafletMapEvents = ({
-    onClick,
-    onShowPopup,
-    showPopupOnClick,
-    popupContent
-}: Props) => {
+const LeafletMapEvents = ({ onClick, onShowPopup, showPopupOnClick, popupContent }: Props) => {
     const [popupLatLng, setPopupLatLng] = useState<LatLngExpression>();
 
     const onMapClick = (event: LeafletMouseEvent) => {
@@ -26,19 +21,15 @@ const LeafletMapEvents = ({
             onShowPopup(event.latlng);
             setPopupLatLng(event.latlng);
         }
-    }
+    };
 
     useMapEvents({
-        click: (event) => {
-            onMapClick(event)
+        click: event => {
+            onMapClick(event);
         }
-    })
+    });
 
-    return (
-        <React.Fragment>
-            { popupLatLng && <Popup position={popupLatLng}>{popupContent}</Popup> }
-        </React.Fragment>
-    );
-}
+    return <React.Fragment>{popupLatLng && <Popup position={popupLatLng}>{popupContent}</Popup>}</React.Fragment>;
+};
 
 export default LeafletMapEvents;

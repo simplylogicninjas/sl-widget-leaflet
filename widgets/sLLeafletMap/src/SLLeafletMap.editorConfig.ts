@@ -38,17 +38,17 @@ export function getProperties(_values: SLLeafletMapPreviewProps, defaultProperti
         delete defaultProperties.properties.myOtherProperty;
     }
     */
-   const properties = defaultProperties.map(property => {
-       if (_values.positionMode !== 'manual') {
-           if (property.caption === 'Position') {
-               property.propertyGroups = property.propertyGroups?.filter(it => it.caption !== 'Manual position');
-           }
+    const properties = defaultProperties.map(property => {
+        if (_values.positionMode !== "manual") {
+            if (property.caption === "Position") {
+                property.propertyGroups = property.propertyGroups?.filter(it => it.caption !== "Manual position");
+            }
 
-           return property;
-       }
+            return property;
+        }
 
-       return property;
-   })
+        return property;
+    });
 
     return properties;
 }

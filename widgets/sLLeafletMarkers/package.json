@@ -10,7 +10,7 @@
   },
   "license": "Apache-2.0",
   "config": {
-    "projectPath": "C:\\\\Mendix\\\\BuitenDomein-main",
+    "projectPath": "C:\\\\Mendix\\\\SLLeafletWidget-main",
     "mendixHost": "http://localhost:8080",
     "developmentPort": 3000
   },

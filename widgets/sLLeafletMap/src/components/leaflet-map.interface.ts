@@ -4,9 +4,13 @@ import { CSSProperties } from "react";
 export interface LeafletTileLayer {
     url: string;
     attribution?: string;
+    minZoom?: number;
+    maxZoom?: number;
+    tileSize?: number;
+    zoomOffset?: number;
 }
 
-export type PositionMode = 'geoPosition' | 'manual' | 'marker' | 'geojson';
+export type PositionMode = "geoPosition" | "manual" | "marker" | "geojson";
 
 export interface Position {
     mode: PositionMode;
@@ -23,7 +27,7 @@ export interface LeafletMapProps {
     lastVisibleTimestamp?: string;
     showPopupOnClick: boolean;
     popupContent: any;
-    baseTileLayer: LeafletTileLayer
+    baseTileLayer: LeafletTileLayer;
     additionalTileLayers: LeafletTileLayer[];
     position: Position;
     style: CSSProperties;

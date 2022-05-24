@@ -6,4 +6,4 @@ export const convertToFloat = (coordinate: string): number => {
     } catch (e) {
         return 0;
     }
-}
+};

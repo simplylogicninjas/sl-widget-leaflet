@@ -1,7 +1,12 @@
 import { LatLng, LatLngExpression } from "leaflet";
-import React, {createElement, useCallback, useEffect, useRef, useState} from "react";
+import React, { createElement, useCallback, useEffect, useRef, useState } from "react";
 import { useMapEvents } from "react-leaflet";
-import { IdentifierAction, IGeofence, IGeofenceLocateOptions, LatLngAction } from "../../../../shared/types/map.interface";
+import {
+    IdentifierAction,
+    IGeofence,
+    IGeofenceLocateOptions,
+    LatLngAction
+} from "../../../../shared/types/map.interface";
 import LeafletGeofenceCircleMarker from "./leaflet-geofence-circle-marker.component";
 import LeafletGeofenceCircle from "./leaflet-geofence-circle.component";
 
@@ -29,7 +34,7 @@ const LeafletGeofence = ({
     const setView = useRef(false);
 
     const map = useMapEvents({
-        locationfound: ({latlng}) => {
+        locationfound: ({ latlng }) => {
             if (data.length && locationEnabled.current) {
                 if (!latLngRef.current) {
                     latLngRef.current = latlng;
@@ -46,11 +51,11 @@ const LeafletGeofence = ({
                 }
             }
         }
-    })
+    });
 
     const updateMapLocationView = (latlng: LatLngExpression) => {
         map.setView(latlng, map.getMaxZoom());
-    }
+    };
 
     const onLocationFound = (latlng: LatLng) => {
         const locationGeofenced: IGeofence[] = [];
@@ -70,7 +75,7 @@ const LeafletGeofence = ({
                     debounceRef.current = setTimeout(() => notifyGeofenceOut(geofenceCircle), index * debounceAmount);
                 }
             }
-        })
+        });
 
         setGeofenced([...locationGeofenced]);
         setCurrentLocation(latlng);
@@ -80,21 +85,25 @@ const LeafletGeofence = ({
         }
     };
 
-    const notifyGeofenceIn = useCallback((geofence: IGeofence) => {
-        if (geofenceAction) {
-            geofenceAction(geofence.id, geofence.distance);
-        }
-    }, [geofenceAction]);
+    const notifyGeofenceIn = useCallback(
+        (geofence: IGeofence) => {
+            if (geofenceAction) {
+                geofenceAction(geofence.id, geofence.distance);
+            }
+        },
+        [geofenceAction]
+    );
 
-    const notifyGeofenceOut = useCallback((geofence: IGeofence) => {
-        if (geofenceOutAction) {
-            geofenceOutAction(geofence.id);
-        }
-    }, [geofenceOutAction]);
+    const notifyGeofenceOut = useCallback(
+        (geofence: IGeofence) => {
+            if (geofenceOutAction) {
+                geofenceOutAction(geofence.id);
+            }
+        },
+        [geofenceOutAction]
+    );
 
     useEffect(() => {
-        // map.stopLocate();
-
         locationEnabled.current = geofenceOptions.enabled;
         setView.current = geofenceOptions.setView;
 
@@ -103,28 +112,25 @@ const LeafletGeofence = ({
                 watch: true,
                 enableHighAccuracy: true,
                 maximumAge: geofenceOptions.maximumAge
-            })
+            });
         } else {
             setCurrentLocation(undefined);
             setGeofenced([]);
             latLngRef.current = undefined;
         }
-    }, [
-        data.length,
-        geofenceOptions.enabled,
-        geofenceOptions.setView
-    ])
+    }, [data.length, geofenceOptions.enabled, geofenceOptions.setView]);
 
     const getCircleColor = (geofence: IGeofence) => {
         return geofenced.find(it => it.id === geofence.id) ? geofence.activeColor : geofence.defaultColor;
-    }
+    };
 
     return (
         <React.Fragment>
-            { currentLocation && <LeafletGeofenceCircleMarker latlng={currentLocation} />}
-            {
-                data.map(item => {
-                    return <LeafletGeofenceCircle
+            {currentLocation && <LeafletGeofenceCircleMarker latlng={currentLocation} />}
+            {data.map(item => {
+                return (
+                    <LeafletGeofenceCircle
+                        key={item.position.toString()}
                         latlng={item.position as LatLngExpression}
                         radius={item.radius}
                         color={getCircleColor(item)}
@@ -136,10 +142,10 @@ const LeafletGeofence = ({
                             opacity: item.fillOpacity
                         }}
                     />
-                })
-            }
+                );
+            })}
         </React.Fragment>
-    )
-}
+    );
+};
 
 export default LeafletGeofence;

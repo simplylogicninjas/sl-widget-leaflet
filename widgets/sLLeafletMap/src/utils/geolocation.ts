@@ -7,6 +7,6 @@ export const getCurrentLocation = async () => {
             );
         });
     } catch (e) {
-        throw new Error('getCurrentPosition error', e);
+        throw new Error("getCurrentPosition error", e);
     }
-}
+};

@@ -1,0 +1,5 @@
+- Execute Node script inside .\release-scripts directory
+- Widgets will be build with release command inside the widgets-dist folder
+- After this process. Copy 'package.xml' to the widgets-dist folder
+- Zip the contents of the widgets-dist folder
+- Rename the Zip file to sl.SLLeafletMap.mpk

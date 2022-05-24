@@ -5,7 +5,7 @@ declare let mx: any;
 
 export const initialGlobalContextState = {
     mapReady: false,
-    mapName: '',
+    mapName: "",
     markers: [],
     geoJSON: [],
     geofence: [],
