@@ -84,8 +84,7 @@ const LeafletMarker = ({
 
     return (
         <div ref={markerContainerRef}>
-            {
-            markerContainerRef.current && (
+            {markerContainerRef.current && (
                 <div>
                     {content && (
                         <div className={`${widgetId}-${id}`} style={{ display: "inline-block" }}>
@@ -108,7 +107,7 @@ const LeafletMarker = ({
                         >
                             {popupContent && <Popup>{popupContent}</Popup>}
                         </Marker>
-                    )}    
+                    )}
                 </div>
             )}
         </div>

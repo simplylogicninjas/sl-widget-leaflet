@@ -4,7 +4,7 @@ const { exec } = require("child_process");
 
 const executeReleaseScript = (widgetsPath, widgetName) => {
     return new Promise((resolve, reject) => {
-        const npmCommand = exec(`npm --prefix ${widgetsPath}\\${widgetName}\\ run build`, (err, stdout, stderr) => {
+        const npmCommand = exec(`npm --prefix ${widgetsPath}\\${widgetName}\\ run release`, (err, stdout, stderr) => {
             if (err) {
                 reject(err);
             }
