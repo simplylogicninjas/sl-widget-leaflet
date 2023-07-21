@@ -27,14 +27,16 @@
   "devDependencies": {
     "@mendix/pluggable-widgets-tools": "^9.0.0",
     "@types/big.js": "^6.0.2",
+    "@types/leaflet": "^1.7.9",
+    "@types/object-hash": "^2.2.1",
     "@types/react": "~17.0.1",
-    "@types/react-dom": "~17.0.1",
-    "@types/leaflet": "^1.7.9"
+    "@types/react-dom": "~17.0.1"
   },
   "dependencies": {
     "classnames": "^2.2.6",
     "leaflet": "^1.8.0",
     "leaflet-defaulticon-compatibility": "^0.1.1",
+    "object-hash": "^3.0.0",
     "react-leaflet": "^3.2.5"
   }
 }

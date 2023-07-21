@@ -95,7 +95,7 @@ const LeafletMap = ({
                         );
                     })}
                     {state.geoJSON.map((geoJSONData, index) => {
-                        return <LeafletGeoJSON key={index} data={geoJSONData} geoJSONAction={state.geoJSONAction} />;
+                        return <LeafletGeoJSON key={index} data={{...geoJSONData}} geoJSONAction={state.geoJSONAction} />;
                     })}
 
                     {state.geofence.length && (

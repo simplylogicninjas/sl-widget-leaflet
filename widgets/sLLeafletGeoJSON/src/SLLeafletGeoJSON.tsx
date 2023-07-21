@@ -9,17 +9,15 @@ import { updateGeoJSON, updateGeoJSONAction } from "../../../shared/types/reduce
 
 declare let mx: any;
 
-const isDifferentData = (currentData: ObjectItem[], newData: ObjectItem[]) => {
+const isDifferentData = (currentData: any[], newData: any[]) => {
     return JSON.stringify(currentData) !== JSON.stringify(newData);
 };
 
 export function SLLeafletGeoJSON(props: SLLeafletGeoJSONContainerProps): ReactElement {
     const { state, dispatch } = useContext<IGlobalContext>(mx.slmap.context);
-    const dataRef = useRef<ObjectItem[]>([]);
+    const dataRef = useRef<any[]>([]);
 
     const loadGeoJSON = (items: ObjectItem[]) => {
-        dataRef.current = [...items];
-
         const data = items
             .map(item => {
                 const geoJSON = props.geoJSON.get(item);
@@ -32,7 +30,10 @@ export function SLLeafletGeoJSON(props: SLLeafletGeoJSONContainerProps): ReactEl
             })
             .filter(it => !!it);
 
-        dispatch(updateGeoJSON(data));
+        if (isDifferentData(data, dataRef.current)) {
+            dataRef.current = data;
+            dispatch(updateGeoJSON([...data]));
+        }
     };
 
     const onFeatureClick = (id: string) => {
@@ -43,7 +44,7 @@ export function SLLeafletGeoJSON(props: SLLeafletGeoJSONContainerProps): ReactEl
     };
 
     useEffect(() => {
-        if (state.mapReady && props.data.items && isDifferentData(dataRef.current, props.data.items)) {
+        if (state.mapReady && props.data.items) {
             loadGeoJSON(props.data.items);
         }
     }, [props.data.items]);
